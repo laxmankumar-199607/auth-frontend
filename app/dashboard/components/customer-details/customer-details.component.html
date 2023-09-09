@@ -1,0 +1,88 @@
+<div class="container">
+    <h2>Customers List</h2>
+    <div class="row">
+
+        <div class="col-12">
+            <!-- Button trigger modal -->
+            <div style="float:right">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="clearModal()">
+                    <i class="fa fa-plus"  ></i>
+                   Add Customer
+                </button>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Customer Details</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter a name" [(ngModel)]="name">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="age">Age</label>
+                                        <input type="text" class="form-control" id="age" placeholder="Enter an age" [(ngModel)]="age">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="location">Location</label>
+                                        <input type="text" class="form-control" id="location"
+                                            placeholder="Enter an location" [(ngModel)]="location">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="saveCustomer()" data-bs-dismiss="modal">{{this.buttonLabel}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+
+        <div class="col-12">
+            <table class="table table-striped  table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th scope="col">Name</th>
+                        <th>Age</th>
+                        <th scope="col">Location</th>
+                        <th >Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of customerList">
+                        <td scope="row">{{c.id}}</td>
+                        <td>{{c.name}}</td>
+                        <td>{{c.age}}</td>
+                        <td>{{c.location}}</td>
+                        <td>
+                            <!-- <i class="fa-solid fa-pen-to-square mx-3 " (click)="onEdit(c)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+                            <i class="fa-solid fa-pen-to-square mx-3 " routerLink="edit/{{c.id}}"
+                           ></i>
+                            <i class="fa-solid fa-trash" (click)="deleteRow(c)"></i>
+                            
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
